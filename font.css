@@ -1,0 +1,232 @@
+/* font: import ================================================ */
+@font-face {
+  font-family: 'AUTHENTICSans-60';
+  src: url('./font/AUTHENTICSans-60.woff2') format('woff2');
+  src: url('./font/AUTHENTICSans-60.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AUTHENTICSans-90';
+  src: url('./font/AUTHENTICSans-90_ig.woff2') format('woff2');
+  src: url('./font/AUTHENTICSans-90_ig.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AUTHENTICSans-130';
+  src: url('./font/AUTHENTICSans-130.woff2') format('woff2');
+  src: url('./font/AUTHENTICSans-130.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AUTHENTICSans-150';
+  src: url('./font/AUTHENTICSans-150.woff2') format('woff2');
+  src: url('./font/AUTHENTICSans-150.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'History_02';
+  src: url('./font/History_02.woff2') format('woff2');
+  src: url('./font/History_02.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'History_04';
+  src: url('./font/History_04.woff2') format('woff2');
+  src: url('./font/History_04.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'History_05';
+  src: url('./font/History_05.woff2') format('woff2');
+  src: url('./font/History_05.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'History_14';
+  src: url('./font/History_14.woff2') format('woff2');
+  src: url('./font/History_14.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'History_15';
+  src: url('./font/History_15.woff2') format('woff2');
+  src: url('./font/History_15.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'History_21';
+  src: url('./font/History_21.woff2') format('woff2');
+  src: url('./font/History_21.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 600,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+
+/* default ================================================ */
+html, body {
+  font-family: "AUTHENTICSans-90", Arial, sans-serif;
+}
+
+/* default: selected ================================================ */
+::selection {
+  color: white;
+  background: black;
+}
+
+::-moz-selection {
+  color: white;
+  background: black;
+}
+
+
+/* default ================================================ */
+a {
+  text-decoration: none;
+  color: #000000;
+  cursor: pointer;
+}
+
+a:hover {
+  color: gray;
+}
+
+.page6 a{
+  color: yellow;
+}
+
+
+/* menu ================================================ */
+.font-menu {
+  margin: 0;
+  padding: 0 10px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: "AUTHENTICSans-90", Arial, sans-serif;
+  font-size: 24px;
+  color: white;
+}
+
+.font-menu:hover {
+  text-decoration: underline;
+}
+
+.menu-selected {
+  text-decoration: underline;
+}
+
+/* headers ================================================ */
+h1 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-weight: normal;
+  font-size: 100px;
+}
+
+.col3-home-logo h1 {
+  font-size: 300px;
+}
+
+.col3-home-plus h1 {
+  font-family: "AUTHENTICSans-90", Arial, sans-serif;
+  font-size: 140px;
+  padding-top: 100px;
+}
+
+h2 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-weight: normal;
+  font-size: 40px;
+  padding: 20px;
+}
+
+h3 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-weight: normal;
+  font-size: 28px;
+  padding: 20px;
+}
+
+p, pre {
+  font-size: 16px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding: 20px;
+  max-width: 1500px;
+}
+
+.col3-home p, pre {
+  padding: 20px 0 0 10px;
+}
+
+.col3 h3 {
+  padding: 20px 0 20px 0;
+}
+
+.col3 p {
+  padding: 0 0 20px 0;
+}
+
+
+pre {
+  font-family: "AUTHENTICSans-90", Arial, sans-serif;
+  white-space: break-spaces;
+}
+
+figcaption {
+  font-size: 16px;
+}
+
+ul {
+  list-style:none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 0;
+  padding: 20px;
+  font-size: 28px;
+}
+
+
+
+
+/* ============================================================================= */
+/* Press */
+/* ============================================================================= */
+#press_title {
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#press_read {
+  text-align: right;
+}
