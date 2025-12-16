@@ -1,0 +1,42 @@
+.bg-about {
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0,0,0,0.4)), url("img_about/profile_1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: white;
+}
+
+
+.bg-clinic {
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0,0,0,0.1)), url("img_design_clinic/design_clinic_1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: white;
+}
+
+.bg-press {
+  width: 100%;
+  min-height: 100vh;
+  background: black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: background-image 1s ease-in-out;
+  color: white;
+}
+
+.bg-contact {
+  width: 100%;
+  min-height: 100vh;
+  background: black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: background-image 1s ease-in-out;
+  color: white;
+}
