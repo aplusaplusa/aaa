@@ -20,11 +20,17 @@ const colors = ["#ff4f4fff", "#fff820ff", "#56a8ffff", "#43ff7bff", "#ff5ce7ff",
 //   "img_home/construction_4.png"
 // ];
 
+// const initialImages = [
+//   "img_home/chair_1.jpg",
+//   "img_home/chair_2.jpg",
+//   "img_home/chair_3.jpg",
+//   "img_home/chair_4.jpg"
+// ];
+
 const initialImages = [
-  "img_home/chair_1.jpg",
-  "img_home/chair_2.jpg",
-  "img_home/chair_3.jpg",
-  "img_home/chair_4.jpg"
+  "img_projects/38_abuelita_masala/aaa_abuelitamasala_02.jpg",
+  "img_projects/50_apartment_of_curiosities/aaa_aptofcuriosities_11.jpg",
+  "img_projects/49_afm_newsstand/aaa_afmnewsstand_04.jpg"
 ];
 
 
@@ -164,5 +170,6 @@ fetch(projectUrl)
     }
   })
   .catch(err => console.error("Fetch error:", err));
+
 
 
