@@ -1,3 +1,32 @@
+
+@media only screen and (max-width:1400px) {
+
+  .about-header {
+    font-size: 16px;
+  }
+
+  .about-text {
+    font-size: 28px;
+  }
+  
+  .about-subbody {
+    font-size: 28px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding: 0 20px 0 20px;
+  }
+
+  .col3-about {
+    display: block;
+  }
+
+  .col3-about > div {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 0 0 100px 0;
+  }
+}
+
 @media only screen and (max-width:1024px) {
   .col3-home {
     grid-template-columns: 1fr;
@@ -78,6 +107,21 @@
 
   .col3-home-logo h1 {
     font-size: 250px;
+  }
+
+  .col3-about > div {
+    grid-template-columns: 1fr;
+  }
+
+  .about-header {
+    display: none;
+  }
+
+  .about-subbody {
+    font-size: 21px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding: 20px 0 20px 0;
   }
 
   .col3-a-bc {
