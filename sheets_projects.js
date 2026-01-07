@@ -44,26 +44,29 @@ setInterval(updateLoadingBackground, 1000);
 // ==============================================================================
 
 let allSheets = [];
-let allCategories = [];
+
+let allTypes = [];        // category1
+let selectedTypes = [];
+
+let allCategories = [];  // category2
 let selectedCategories = [];
 
+// --- Sheet Renderding ---
 function renderSheets() {
   const list = document.getElementById("list");
   list.innerHTML = "";
 
   let filtered = allSheets;
 
-  if (selectedCategories.length > 0) {
-    filtered = allSheets.filter(sh => {
-      const sheetCats = (sh.category || "").split(",").map(s => s.trim());
-      return sheetCats.some(c => selectedCategories.includes(c));
-    });
+  if (selectedTypes.length > 0) {
+    filtered = filtered.filter(sh => selectedTypes.includes(sh.category1));
   }
 
-  if (filtered.length === 0) {
-    list.textContent = ""; // No sheets found
-    return;
+  if (selectedCategories.length > 0) {
+    filtered = filtered.filter(sh => selectedCategories.includes(sh.category2));
   }
+
+  if (filtered.length === 0) return;
 
   filtered.forEach(sh => {
     const wrap = document.createElement("div");
@@ -88,18 +91,15 @@ function renderSheets() {
       wrap.appendChild(t);
     }
 
-
     wrap.addEventListener("click", () => {
-
       loadSheetData(sh.name);
-
       const newUrl = window.location.pathname + "?sheet=" + encodeURIComponent(sh.name);
       window.history.pushState({ sheet: sh.name }, "", newUrl);
 
       const categoriesBlock = document.getElementById("categoriesBlock");
-      const list = document.getElementById("list");
       if (categoriesBlock) categoriesBlock.style.display = "none";
-      if (list) list.style.display = "none";
+      list.style.display = "none";
+      const content = document.getElementById("content");
       if (content) content.style.display = "block";
     });
 
@@ -107,17 +107,91 @@ function renderSheets() {
   });
 }
 
+
+// --- Project Type Renderding  ---
+function renderTypes() {
+  const typeList = document.getElementById("typeList");
+  typeList.innerHTML = "";
+
+  const header = document.createElement("h3");
+  header.className = "item-header";
+  header.textContent = "Project Type";
+  typeList.appendChild(header);
+
+  // const allBtn = document.createElement("div");
+  // allBtn.className = "type-item";
+  // allBtn.textContent = "All";
+  // allBtn.dataset.type = "All";
+  // allBtn.classList.add("item-selected");
+  // typeList.appendChild(allBtn);
+
+  allTypes.forEach(type => {
+    const item = document.createElement("div");
+    item.className = "type-item";
+    item.textContent = type;
+    item.dataset.type = type;
+    typeList.appendChild(item);
+  });
+
+  typeList.querySelectorAll(".type-item").forEach(el => {
+    el.addEventListener("click", () => {
+      const type = el.dataset.type;
+
+      if (type === "All") {
+        selectedTypes = [];
+        typeList.querySelectorAll(".type-item").forEach(btn => btn.classList.remove("item-selected"));
+        el.classList.add("item-selected");
+      } else {
+        el.classList.toggle("item-selected");
+        if (selectedTypes.includes(type)) {
+          selectedTypes = selectedTypes.filter(t => t !== type);
+        } else {
+          selectedTypes.push(type);
+        }
+      }
+
+      // if (type === "All") {
+      //   selectedTypes = [];
+      //   typeList.querySelectorAll(".type-item").forEach(btn => btn.classList.remove("item-selected"));
+      //   el.classList.add("item-selected");
+      // } else {
+      //   const allBtn = typeList.querySelector('[data-type="All"]');
+      //   if (allBtn) allBtn.classList.remove("item-selected");
+
+      //   if (selectedTypes.includes(type)) {
+      //     selectedTypes = selectedTypes.filter(t => t !== type);
+      //     el.classList.remove("item-selected");
+      //   } else {
+      //     selectedTypes.push(type);
+      //     el.classList.add("item-selected");
+      //   }
+
+      //   if (selectedTypes.length === 0 && allBtn) {
+      //     allBtn.classList.add("item-selected");
+      //   }
+      // }
+
+      renderSheets();
+    });
+  });
+}
+
+// --- Category Renderding ---
 function renderCategories() {
   const categoryList = document.getElementById("categoryList");
   categoryList.innerHTML = "";
 
+  const header = document.createElement("h3");
+  header.className = "item-header";
+  header.textContent = "Category";
+  categoryList.appendChild(header);
 
-  const allBtn = document.createElement("div");
-  allBtn.className = "category-item";
-  allBtn.textContent = "All";
-  allBtn.dataset.category = "All";
-  allBtn.style.textDecoration = "underline"; 
-  categoryList.appendChild(allBtn);
+  // const allBtn = document.createElement("div");
+  // allBtn.className = "category-item";
+  // allBtn.textContent = "All";
+  // allBtn.dataset.category = "All";
+  // allBtn.classList.add("item-selected");
+  // categoryList.appendChild(allBtn);
 
   allCategories.forEach(cat => {
     const item = document.createElement("div");
@@ -132,41 +206,46 @@ function renderCategories() {
       const cat = el.dataset.category;
 
       if (cat === "All") {
-   
         selectedCategories = [];
-
-        categoryList.querySelectorAll(".category-item").forEach(btn => {
-          allBtn.style.textDecoration = "underline";
-          btn.style.textDecoration = "none"; 
-          btn.style.background = "#fff";    
-        });
-
-
-        el.style.textDecoration = "underline";
+        categoryList.querySelectorAll(".category-item").forEach(btn => btn.classList.remove("item-selected"));
+        el.classList.add("item-selected");
       } else {
-
-        const allBtn = categoryList.querySelector('[data-category="All"]');
-        if (allBtn) allBtn.style.textDecoration = "none";
-
+        el.classList.toggle("item-selected");
         if (selectedCategories.includes(cat)) {
           selectedCategories = selectedCategories.filter(c => c !== cat);
-          el.style.textDecoration = "none";
         } else {
-
           selectedCategories.push(cat);
-          el.style.textDecoration = "underline";
-        }
-        if (selectedCategories.length === 0) {
-          allBtn.style.textDecoration = "underline";
         }
       }
+      // if (cat === "All") {
+      //   selectedCategories = [];
+      //   categoryList.querySelectorAll(".category-item").forEach(btn => btn.classList.remove("item-selected"));
+      //   el.classList.add("item-selected");
+      // } else {
+      //   const allBtn = categoryList.querySelector('[data-category="All"]');
+      //   if (allBtn) allBtn.classList.remove("item-selected");
+
+      //   if (selectedCategories.includes(cat)) {
+      //     selectedCategories = selectedCategories.filter(c => c !== cat);
+      //     el.classList.remove("item-selected");
+      //   } else {
+      //     selectedCategories.push(cat);
+      //     el.classList.add("item-selected");
+      //   }
+
+      //   if (selectedCategories.length === 0 && allBtn) {
+      //     allBtn.classList.add("item-selected");
+      //   }
+      // }
 
       renderSheets();
     });
   });
-
 }
 
+
+
+// --- Sheet Data fetch + Renderding ---
 function loadSheetData(sheetName) {
   const detailUrl = `${projectUrl}?sheet=${encodeURIComponent(sheetName)}`;
   const container = document.getElementById('content');
@@ -233,25 +312,27 @@ function loadSheetData(sheetName) {
     });
 }
 
+// --- Page Loaded > URL  ---
 const params = new URLSearchParams(window.location.search);
 const sheetNameFromUrl = params.get("sheet");
 if(sheetNameFromUrl) {
   loadSheetData(sheetNameFromUrl);
 }
 
+// --- initial fetch ---
 fetch(projectUrl)
   .then(res => res.json())
   .then(json => {
     allSheets = json.sheets;
-    allCategories = json.categories;
 
-    if (allCategories.length > 0) {
-      renderCategories();
-    }
+    allTypes = json.categories.type || [];
+    allCategories = json.categories.category || [];
 
+    renderTypes();
+    renderCategories();
     renderSheets();
   })
   .catch(err => {
     console.error(err);
-    document.getElementById("list").textContent = "Failed to load.";
+    // document.getElementById("list").textContent = "Failed to load.";
   });
