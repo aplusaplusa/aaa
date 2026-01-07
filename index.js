@@ -1,7 +1,6 @@
 // =============================================================================
 // Menu: btns
 // =============================================================================
-
 $('[class^=page]').hide(); 
 $('.page1').show();
 $('.menu-btn#page1').addClass('menu-selected');
@@ -26,7 +25,7 @@ function showThumbnail() {
   const list = document.getElementById("list");
   const content = document.getElementById("content");
 
-  if (categoriesBlock) categoriesBlock.style.display = "flex";
+  if (categoriesBlock) categoriesBlock.style.display = "grid";
   if (list) list.style.display = "flex";
   if (content) content.style.display = "none";
 }
@@ -53,90 +52,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   menuButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      menuR.classList.remove("open");     
+      menuR.classList.remove("open");        
       hamburgerBtn.classList.remove("active"); 
-      hamburgerBtn.textContent = "menu";        
+      hamburgerBtn.textContent = "menu";      
     });
   });
 });
 
 
 
-
-// Menu Text Color: White BG ------------------------------------------------
-// function updateMenuBlendMode() {
-//   const page2 = document.querySelector(".page2");
-//   const menuL = document.querySelector(".menu-l");
-//   const menuR = document.querySelector("#menu-r");
-
-//   if (!menuL || !menuR || !page2) return;
-
-//   const isPage2Visible =
-//     window.getComputedStyle(page2).display === "block";
-
-//   if (isPage2Visible) {
-//     menuL.style.mixBlendMode = "difference";
-//     menuR.style.mixBlendMode = "difference";
-//   } else {
-//     menuL.style.mixBlendMode = "";
-//     menuR.style.mixBlendMode = "";
-//   }
-// }
-
-// // 페이지 로드 후 한 번 실행
-// document.addEventListener("DOMContentLoaded", () => {
-//   updateMenuBlendMode();
-
-//   // page2의 style 변경 자동 감지
-//   const page2 = document.querySelector(".page2");
-//   if (page2) {
-//     const observer = new MutationObserver(updateMenuBlendMode);
-//     observer.observe(page2, { attributes: true, attributeFilter: ["style"] });
-//   }
-// });
-
-
-// function updateMenuBlendMode() {
-//   const page2 = document.querySelector(".page2");
-//   const menuL = document.querySelector(".menu-l");
-//   const menuR = document.querySelector(".menu-r");
-
-//   if (!menuL || !menuR || !page2) return;
-
-//   const isPage2Visible =
-//     window.getComputedStyle(page2).display === "block";
-
-//   if (isPage2Visible) {
-//     menuL.style.mixBlendMode = "difference";
-//     menuR.style.mixBlendMode = "difference";
-//   } else {
-//     menuL.style.mixBlendMode = "";
-//     menuR.style.mixBlendMode = "";
-//   }
-// }
-
-
-
-// Home: splash ------------------------------------------------
-// document.addEventListener('DOMContentLoaded', function () {
-//   const scrollArea = document.querySelector('.scrollContents');
-//   const splash = document.getElementById('col3-home-splash');
-//   const menuL = document.querySelector("#menu-l");
-//   const menuR = document.querySelector("#menu-r");
-//   if (!scrollArea || !splash) return;
-
-//   scrollArea.addEventListener('scroll', function () {
-//     if (scrollArea.scrollTop > 0) {
-//       // splash.classList.add('hidden');
-//       menuL.style.mixBlendMode = "difference";
-//       menuR.style.mixBlendMode = "difference";
-//     } else {
-//       // splash.classList.remove('hidden');
-//       menuL.style.mixBlendMode = "normal";
-//       menuR.style.mixBlendMode = "normal";
-//     }
-//   });
-// });
 
 document.addEventListener('DOMContentLoaded', function () { 
   const scrollArea = document.querySelector('.scrollContents'); 
@@ -158,9 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }); 
   });
 
-
-
-
 // Home: splash > A fonts ------------------------------------------------
 document.addEventListener('DOMContentLoaded', function () {
   const h1Elements = document.querySelectorAll('.col3-home-logo h1');
@@ -175,8 +96,9 @@ document.addEventListener('DOMContentLoaded', function () {
     'History_21',
   ];
 
+
   function applyRandomFonts() {
-    let availableFonts = [...fonts]; 
+    let availableFonts = [...fonts];
 
     h1Elements.forEach(h1 => {
       if (availableFonts.length === 0) {
@@ -194,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   applyRandomFonts();
 
+
   menuButtons.forEach(btn => {
     btn.addEventListener('click', applyRandomFonts);
   });
@@ -203,51 +126,117 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
 document.addEventListener('DOMContentLoaded', function () {
-  const scrollArea = document.querySelector('.scrollContents');
-  const col1 = document.querySelector('.col1-home');
 
-  const images = [
-    'img_footer/construction_1.png',
-    'img_footer/construction_3.png',
-    'img_footer/construction_5.png',
-    'img_footer/construction_7.png'
+  const scrollAreas = document.querySelectorAll('.scrollContents');
+  if (scrollAreas.length === 0) return;
+
+  const footerConfigs = [
+    {
+      selector: '.footer-home',
+      images: [
+        'img_footer/construction_1.png',
+        'img_footer/construction_3.png',
+        'img_footer/construction_5.png',
+        'img_footer/construction_7.png'
+      ]
+    },
+    {
+      selector: '.footer-projects',
+      images: [
+        'img_footer/construction_1.png',
+        'img_footer/construction_3.png',
+        'img_footer/construction_5.png',
+        'img_footer/construction_7.png'
+      ]
+    },
+    {
+      selector: '.footer-about',
+      images: [
+        'img_footer/construction_1.png',
+        'img_footer/construction_3.png',
+        'img_footer/construction_5.png',
+        'img_footer/construction_7.png'
+      ]
+    },
+    {
+      selector: '.footer-press',
+      images: [
+        'img_footer/construction_1.png',
+        'img_footer/construction_3.png',
+        'img_footer/construction_5.png',
+        'img_footer/construction_7.png'
+      ]
+    },
+    {
+      selector: '.footer-contact',
+      images: [
+        'img_footer/construction_1.png',
+        'img_footer/construction_3.png',
+        'img_footer/construction_5.png',
+        'img_footer/construction_7.png'
+      ]
+    }
   ];
 
-  if (!scrollArea || !col1) return;
+  scrollAreas.forEach(scrollArea => {
 
-  let atBottom = false;
-  let lastIndex = null;
 
-  scrollArea.addEventListener('scroll', function () {
-    const scrollTop = scrollArea.scrollTop;
-    const scrollHeight = scrollArea.scrollHeight;
-    const clientHeight = scrollArea.clientHeight;
+    const footers = footerConfigs
+      .map(cfg => {
+        const el = scrollArea.querySelector(cfg.selector);
+        if (!el) return null;
 
-    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 800;
+        return {
+          el,
+          images: cfg.images,
+          lastIndex: null
+        };
+      })
+      .filter(Boolean);
 
-    if (isAtBottom && !atBottom) {
-      let randomIndex;
+    if (footers.length === 0) return;
 
-   
-      do {
-        randomIndex = Math.floor(Math.random() * images.length);
-      } while (randomIndex === lastIndex && images.length > 1);
+    let atBottom = false;
 
-      lastIndex = randomIndex; 
+    scrollArea.addEventListener('scroll', function () {
+      const scrollTop = scrollArea.scrollTop;
+      const scrollHeight = scrollArea.scrollHeight;
+      const clientHeight = scrollArea.clientHeight;
 
-      const randomImg = images[randomIndex];
-      col1.style.backgroundImage = `url(${randomImg})`;
-      col1.style.backgroundSize = "contain";
-      col1.style.backgroundPosition = "center";
+      const isAtBottom =
+        scrollTop + clientHeight >= scrollHeight - 800;
 
-      atBottom = true;
-    } 
-    else if (!isAtBottom && atBottom) {
-      atBottom = false;
-    }
+      if (isAtBottom && !atBottom) {
+        footers.forEach(footer => {
+          let randomIndex;
+
+          do {
+            randomIndex = Math.floor(
+              Math.random() * footer.images.length
+            );
+          } while (
+            randomIndex === footer.lastIndex &&
+            footer.images.length > 1
+          );
+
+          footer.lastIndex = randomIndex;
+
+          const randomImg = footer.images[randomIndex];
+          footer.el.style.backgroundImage = `url(${randomImg})`;
+          footer.el.style.backgroundSize = "contain";
+          footer.el.style.backgroundPosition = "center";
+        });
+
+        atBottom = true;
+      } 
+      else if (!isAtBottom && atBottom) {
+        atBottom = false;
+      }
+    });
   });
 });
+
+
 
 
