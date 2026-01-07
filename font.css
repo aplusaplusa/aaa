@@ -131,13 +131,13 @@ a:hover {
   color: white;
 }
 
-.font-menu:hover {
+/* .font-menu:hover {
   text-decoration: underline;
-}
+} */
 
-.menu-selected {
+/* .menu-selected {
   text-decoration: underline;
-}
+} */
 
 /* headers ================================================ */
 h1 {
@@ -219,15 +219,10 @@ ul {
 /* About */
 /* ============================================================================= */
 .about-header {
-  font-size: 28px;
-}
-
-.about-text {
-  font-size: 28px;
+  font-size: 90px;
 }
 
 .about-subbody {
-  font-size: 28px;
   margin-block-start: 0;
   margin-block-end: 0;
   padding: 20px 0 20px 0;
