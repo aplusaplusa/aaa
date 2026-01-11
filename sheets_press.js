@@ -83,23 +83,40 @@ function renderSheet(rows, targetId) {
     const item = document.createElement("div");
     item.className = "press-item";
 
+    // col12 (text1 + text2 wrapper)
+    const col12 = document.createElement("div");
+    col12.className = "press-col-title";
+
     // text1
     const col1 = document.createElement("div");
-    col1.className = "press-col press-col-1";
+    col1.className = "press-col-1";
     col1.appendChild(makeLink(row.text1, row.link));
 
     // text2
     const col2 = document.createElement("div");
-    col2.className = "press-col press-col-2";
+    col2.className = "press-col-2";
     col2.appendChild(makeLink(row.text2, row.link));
+
+    col12.appendChild(col1);
+    col12.appendChild(col2);
+    // // text1
+    // const col1 = document.createElement("div");
+    // col1.className = "press-col press-col-1";
+    // col1.appendChild(makeLink(row.text1, row.link));
+
+    // // text2
+    // const col2 = document.createElement("div");
+    // col2.className = "press-col press-col-2";
+    // col2.appendChild(makeLink(row.text2, row.link));
 
     // text3
     const col3 = document.createElement("div");
     col3.className = "press-col press-col-3";
     col3.appendChild(makeLink(row.text3, row.link));
 
-    item.appendChild(col1);
-    item.appendChild(col2);
+    // item.appendChild(col1);
+    // item.appendChild(col2);
+    item.appendChild(col12);
     item.appendChild(col3);
 
     grid.appendChild(item);

@@ -21,7 +21,7 @@ iframe {
   /* width: 910px; */
   width: calc(100% + 30px);
   height: 981px;
-  transform: translate(6px, 0);
+  transform: translate(6px, -100px);
   /* width: 110%;
   height: 1060px; */
   border: none;
@@ -456,9 +456,9 @@ tr:hover {
 /* ============================================================================= */
 .categories {
   margin-bottom: 24px;
-  padding: 120px 0 120px 0;
+  padding: 120px 2.5vw 120px 2.5vw;
   display: grid; 
-  width: 100%;
+  width: calc(100vw - 5vw);
   grid-auto-columns: 1fr; 
   grid-auto-rows: 1fr; 
   grid-template-columns: 1fr 1fr 1fr; 
@@ -475,7 +475,7 @@ tr:hover {
 } */
 
 .category-info {
-  padding: 60px 10px 0 40px;
+  padding: 60px 10px 0 0;
 }
 
 /* .category-list { 
@@ -489,6 +489,36 @@ tr:hover {
 
 .item-header {
   padding: 0 0 20px 4px;
+}
+
+.type-item.is-hidden {
+  display: none;
+}
+
+.category-item.is-hidden {
+  display: none;
+}
+
+.type-toggle {
+  display: inline-block;
+  height: 28px;
+  margin: 0;
+  padding: 7px 0 3px 4px;
+  border: 1px solid transparent;
+  outline: 1px solid transparent;
+  cursor: pointer;
+  font-size: 21px;
+}
+
+.category-toggle {
+  display: inline-block;
+  height: 28px;
+  margin: 0;
+  padding: 7px 0 3px 4px;
+  border: 1px solid transparent;
+  outline: 1px solid transparent;
+  cursor: pointer;
+  font-size: 21px;
 }
 
 .type-item {
@@ -586,9 +616,20 @@ tr:hover {
 
 .press-item {
   display: grid;
-  grid-template-columns: auto 1fr 2fr;
+  grid-template-columns: 1fr 2fr;
   padding: 14px 0 14px 0;
   border-bottom: 2px solid black;
+}
+
+.press-col-title {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.press-col-2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
 }
 
 .press-col a {
@@ -597,4 +638,23 @@ tr:hover {
 
 .press-col-1 {
   padding: 0 20px 0 20px;
+}
+
+.press-col-3 {
+  padding: 0 0 0 20px;
+}
+
+
+/* ============================================================================= */
+/* Contact
+/* ============================================================================= */
+.col3-contact {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
 }

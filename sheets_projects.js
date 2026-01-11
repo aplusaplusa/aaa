@@ -38,7 +38,6 @@ setInterval(updateLoadingBackground, 1000);
 
 
 
-
 // ==============================================================================
 // Sheets
 // ==============================================================================
@@ -56,15 +55,26 @@ function renderSheets() {
   const list = document.getElementById("list");
   list.innerHTML = "";
 
-  let filtered = allSheets;
+  let filtered = allSheets.filter(sh => {
+    const sheetCats = [
+      ...(sh.category1 ? sh.category1.split(",") : []),
+      ...(sh.category2 ? sh.category2.split(",") : [])
+    ].map(c => c.trim()).filter(Boolean);
 
-  if (selectedTypes.length > 0) {
-    filtered = filtered.filter(sh => selectedTypes.includes(sh.category1));
-  }
+    if (selectedTypes.length === 0 && selectedCategories.length === 0) {
+      return true;
+    }
 
-  if (selectedCategories.length > 0) {
-    filtered = filtered.filter(sh => selectedCategories.includes(sh.category2));
-  }
+    const typeMatch =
+      selectedTypes.length > 0 &&
+      sheetCats.some(c => selectedTypes.includes(c));
+
+    const categoryMatch =
+      selectedCategories.length > 0 &&
+      sheetCats.some(c => selectedCategories.includes(c));
+
+    return typeMatch || categoryMatch;
+  });
 
   if (filtered.length === 0) return;
 
@@ -107,8 +117,63 @@ function renderSheets() {
   });
 }
 
+// function renderSheets() {
+//   const list = document.getElementById("list");
+//   list.innerHTML = "";
 
-// --- Project Type Renderding  ---
+//   let filtered = allSheets;
+
+//   if (selectedTypes.length > 0) {
+//     filtered = filtered.filter(sh => selectedTypes.includes(sh.category1));
+//   }
+
+//   if (selectedCategories.length > 0) {
+//     filtered = filtered.filter(sh => selectedCategories.includes(sh.category2));
+//   }
+
+//   if (filtered.length === 0) return;
+
+//   filtered.forEach(sh => {
+//     const wrap = document.createElement("div");
+//     wrap.className = "sheet";
+
+//     if (sh.image) {
+//       const img = document.createElement("img");
+//       img.src = sh.image;
+//       img.className = "sheet-thumbnail";
+//       wrap.appendChild(img);
+//     }
+
+//     const title = document.createElement("div");
+//     title.className = "sheet-title";
+//     title.textContent = sh.name;
+//     wrap.appendChild(title);
+
+//     if (sh.text) {
+//       const t = document.createElement("div");
+//       t.className = "sheet-text";
+//       t.textContent = sh.text;
+//       wrap.appendChild(t);
+//     }
+
+//     wrap.addEventListener("click", () => {
+//       loadSheetData(sh.name);
+//       const newUrl = window.location.pathname + "?sheet=" + encodeURIComponent(sh.name);
+//       window.history.pushState({ sheet: sh.name }, "", newUrl);
+
+//       const categoriesBlock = document.getElementById("categoriesBlock");
+//       if (categoriesBlock) categoriesBlock.style.display = "none";
+//       list.style.display = "none";
+//       const content = document.getElementById("content");
+//       if (content) content.style.display = "block";
+//     });
+
+//     list.appendChild(wrap);
+//   });
+// }
+
+const defaultVisibleCount = 10;
+
 function renderTypes() {
   const typeList = document.getElementById("typeList");
   typeList.innerHTML = "";
@@ -118,63 +183,61 @@ function renderTypes() {
   header.textContent = "Project Type";
   typeList.appendChild(header);
 
-  // const allBtn = document.createElement("div");
-  // allBtn.className = "type-item";
-  // allBtn.textContent = "All";
-  // allBtn.dataset.type = "All";
-  // allBtn.classList.add("item-selected");
-  // typeList.appendChild(allBtn);
-
-  allTypes.forEach(type => {
+  allTypes.forEach((type, index) => {
     const item = document.createElement("div");
     item.className = "type-item";
     item.textContent = type;
     item.dataset.type = type;
+
+    if (index >= defaultVisibleCount) {
+      item.classList.add("is-hidden");
+    }
+
     typeList.appendChild(item);
   });
+
+  let toggleBtn = null;
+  if (allTypes.length > defaultVisibleCount) {
+    toggleBtn = document.createElement("div");
+    toggleBtn.className = "type-toggle";
+    toggleBtn.textContent = "See More";
+    toggleBtn.dataset.state = "collapsed";
+    typeList.appendChild(toggleBtn);
+  }
 
   typeList.querySelectorAll(".type-item").forEach(el => {
     el.addEventListener("click", () => {
       const type = el.dataset.type;
 
-      if (type === "All") {
-        selectedTypes = [];
-        typeList.querySelectorAll(".type-item").forEach(btn => btn.classList.remove("item-selected"));
-        el.classList.add("item-selected");
+      el.classList.toggle("item-selected");
+
+      if (selectedTypes.includes(type)) {
+        selectedTypes = selectedTypes.filter(t => t !== type);
       } else {
-        el.classList.toggle("item-selected");
-        if (selectedTypes.includes(type)) {
-          selectedTypes = selectedTypes.filter(t => t !== type);
-        } else {
-          selectedTypes.push(type);
-        }
+        selectedTypes.push(type);
       }
-
-      // if (type === "All") {
-      //   selectedTypes = [];
-      //   typeList.querySelectorAll(".type-item").forEach(btn => btn.classList.remove("item-selected"));
-      //   el.classList.add("item-selected");
-      // } else {
-      //   const allBtn = typeList.querySelector('[data-type="All"]');
-      //   if (allBtn) allBtn.classList.remove("item-selected");
-
-      //   if (selectedTypes.includes(type)) {
-      //     selectedTypes = selectedTypes.filter(t => t !== type);
-      //     el.classList.remove("item-selected");
-      //   } else {
-      //     selectedTypes.push(type);
-      //     el.classList.add("item-selected");
-      //   }
-
-      //   if (selectedTypes.length === 0 && allBtn) {
-      //     allBtn.classList.add("item-selected");
-      //   }
-      // }
 
       renderSheets();
     });
   });
+
+  // See More / See Less Click
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      const isCollapsed = toggleBtn.dataset.state === "collapsed";
+
+      typeList.querySelectorAll(".type-item").forEach((item, index) => {
+        if (index >= defaultVisibleCount) {
+          item.classList.toggle("is-hidden", !isCollapsed);
+        }
+      });
+
+      toggleBtn.textContent = isCollapsed ? "See Less" : "See More";
+      toggleBtn.dataset.state = isCollapsed ? "expanded" : "collapsed";
+    });
+  }
 }
+
 
 // --- Category Renderding ---
 function renderCategories() {
@@ -186,62 +249,128 @@ function renderCategories() {
   header.textContent = "Category";
   categoryList.appendChild(header);
 
-  // const allBtn = document.createElement("div");
-  // allBtn.className = "category-item";
-  // allBtn.textContent = "All";
-  // allBtn.dataset.category = "All";
-  // allBtn.classList.add("item-selected");
-  // categoryList.appendChild(allBtn);
-
-  allCategories.forEach(cat => {
+  allCategories.forEach((cat, index) => {
     const item = document.createElement("div");
     item.className = "category-item";
     item.textContent = cat;
-    item.dataset.category = cat;
+    item.dataset.type = cat;
+
+    if (index >= defaultVisibleCount) {
+      item.classList.add("is-hidden");
+    }
+
     categoryList.appendChild(item);
   });
 
+  let toggleBtn = null;
+  if (allCategories.length > defaultVisibleCount) {
+    toggleBtn = document.createElement("div");
+    toggleBtn.className = "category-toggle";
+    toggleBtn.textContent = "See More";
+    toggleBtn.dataset.state = "collapsed";
+    categoryList.appendChild(toggleBtn);
+  }
+
   categoryList.querySelectorAll(".category-item").forEach(el => {
     el.addEventListener("click", () => {
-      const cat = el.dataset.category;
+      const type = el.dataset.type;
 
-      if (cat === "All") {
-        selectedCategories = [];
-        categoryList.querySelectorAll(".category-item").forEach(btn => btn.classList.remove("item-selected"));
-        el.classList.add("item-selected");
+      el.classList.toggle("item-selected");
+
+      if (selectedCategories.includes(type)) {
+        selectedCategories = selectedCategories.filter(t => t !== type);
       } else {
-        el.classList.toggle("item-selected");
-        if (selectedCategories.includes(cat)) {
-          selectedCategories = selectedCategories.filter(c => c !== cat);
-        } else {
-          selectedCategories.push(cat);
-        }
+        selectedCategories.push(type);
       }
-      // if (cat === "All") {
-      //   selectedCategories = [];
-      //   categoryList.querySelectorAll(".category-item").forEach(btn => btn.classList.remove("item-selected"));
-      //   el.classList.add("item-selected");
-      // } else {
-      //   const allBtn = categoryList.querySelector('[data-category="All"]');
-      //   if (allBtn) allBtn.classList.remove("item-selected");
-
-      //   if (selectedCategories.includes(cat)) {
-      //     selectedCategories = selectedCategories.filter(c => c !== cat);
-      //     el.classList.remove("item-selected");
-      //   } else {
-      //     selectedCategories.push(cat);
-      //     el.classList.add("item-selected");
-      //   }
-
-      //   if (selectedCategories.length === 0 && allBtn) {
-      //     allBtn.classList.add("item-selected");
-      //   }
-      // }
 
       renderSheets();
     });
   });
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      const isCollapsed = toggleBtn.dataset.state === "collapsed";
+
+      categoryList.querySelectorAll(".category-item").forEach((item, index) => {
+        if (index >= defaultVisibleCount) {
+          item.classList.toggle("is-hidden", !isCollapsed);
+        }
+      });
+
+      toggleBtn.textContent = isCollapsed ? "See Less" : "See More";
+      toggleBtn.dataset.state = isCollapsed ? "expanded" : "collapsed";
+    });
+  }
 }
+
+
+
+
+// function renderCategories() {
+//   const categoryList = document.getElementById("categoryList");
+//   categoryList.innerHTML = "";
+
+//   const header = document.createElement("h3");
+//   header.className = "item-header";
+//   header.textContent = "Category";
+//   categoryList.appendChild(header);
+
+//   // const allBtn = document.createElement("div");
+//   // allBtn.className = "category-item";
+//   // allBtn.textContent = "All";
+//   // allBtn.dataset.category = "All";
+//   // allBtn.classList.add("item-selected");
+//   // categoryList.appendChild(allBtn);
+
+//   allCategories.forEach(cat => {
+//     const item = document.createElement("div");
+//     item.className = "category-item";
+//     item.textContent = cat;
+//     item.dataset.category = cat;
+//     categoryList.appendChild(item);
+//   });
+
+//   categoryList.querySelectorAll(".category-item").forEach(el => {
+//     el.addEventListener("click", () => {
+//       const cat = el.dataset.category;
+
+//       if (cat === "All") {
+//         selectedCategories = [];
+//         categoryList.querySelectorAll(".category-item").forEach(btn => btn.classList.remove("item-selected"));
+//         el.classList.add("item-selected");
+//       } else {
+//         el.classList.toggle("item-selected");
+//         if (selectedCategories.includes(cat)) {
+//           selectedCategories = selectedCategories.filter(c => c !== cat);
+//         } else {
+//           selectedCategories.push(cat);
+//         }
+//       }
+//       // if (cat === "All") {
+//       //   selectedCategories = [];
+//       //   categoryList.querySelectorAll(".category-item").forEach(btn => btn.classList.remove("item-selected"));
+//       //   el.classList.add("item-selected");
+//       // } else {
+//       //   const allBtn = categoryList.querySelector('[data-category="All"]');
+//       //   if (allBtn) allBtn.classList.remove("item-selected");
+
+//       //   if (selectedCategories.includes(cat)) {
+//       //     selectedCategories = selectedCategories.filter(c => c !== cat);
+//       //     el.classList.remove("item-selected");
+//       //   } else {
+//       //     selectedCategories.push(cat);
+//       //     el.classList.add("item-selected");
+//       //   }
+
+//       //   if (selectedCategories.length === 0 && allBtn) {
+//       //     allBtn.classList.add("item-selected");
+//       //   }
+//       // }
+
+//       renderSheets();
+//     });
+//   });
+// }
 
 
 

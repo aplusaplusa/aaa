@@ -1,5 +1,7 @@
 .bg-about {
-  width: 100%;
+  width: calc(100% - 20px);
+  margin-left: 20px;
+  /* width: 100%; */
   min-height: 100vh;
   background-image: linear-gradient(rgba(0,0,0,0)), url("img_about/profile_1.jpg");
   background-size: cover;
@@ -41,7 +43,9 @@
 }
 
 .bg-press {
-  width: 100%;
+  width: calc(100% - 20px);
+  margin-left: 20px;
+  /* width: 100%; */
   min-height: 100vh;
   background: black;
   background-size: cover;
@@ -63,7 +67,9 @@
 } */
 
 .bg-contact {
-  width: 100%;
+  width: calc(100% - 20px);
+  margin-left: 20px;
+  /* width: 100%; */
   min-height: 100vh;
   background-image: linear-gradient(rgba(0,0,0,0.1)), url("img_contact/contact_header.jpg");
   background-size: cover;

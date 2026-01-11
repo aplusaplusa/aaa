@@ -135,8 +135,10 @@ fetch(projectUrl)
         const caption = document.createElement("div");
         caption.innerHTML = `${item.title}<br>${item.text}`;
         caption.style.position = "absolute";
-        caption.style.bottom = "5px";
-        caption.style.left = "10px";
+        caption.style.bottom = "15px";
+        caption.style.left = "20px";
+        // caption.style.bottom = "5px";
+        // caption.style.left = "10px";
         caption.style.color = "white";
         caption.style.fontSize = "16px";
         caption.style.textShadow = "0 0 5px gray";

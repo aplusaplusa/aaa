@@ -83,6 +83,8 @@
   }
 
   .bg-about, .bg-clinic2, .bg-press, .bg-contact{
+    width: 100%;
+    margin-left: 0;
     min-height: 50vh;
   }
 
@@ -121,8 +123,16 @@
     font-size: 250px;
   }
 
+  .col3-about {
+    grid-template-columns: 1fr;
+  }
+
   .col3-about > div {
     grid-template-columns: 1fr;
+  }
+
+  .about-text {
+    padding: 0 15px 20px 20px;
   }
 
   .about-subbody {
@@ -215,5 +225,9 @@
 
   #press_read {
     display: none;
+  }
+
+  .col3-contact {
+    grid-template-columns: 1fr;
   }
 }
