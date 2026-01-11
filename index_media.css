@@ -178,6 +178,10 @@
     padding: 0 20px 0 20px;
   }
 
+  .type-toggle,.category-toggle {
+    font-size: 16px;
+  }
+
   .type-item {
     height: 20px;
     border-radius: 20px;
