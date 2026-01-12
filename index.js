@@ -244,10 +244,10 @@ document.addEventListener('DOMContentLoaded', function () {
     {
       selector: '.footer-contact',
       images: [
-        'img_footer/construction_1.png',
-        'img_footer/construction_3.png',
-        'img_footer/construction_5.png',
-        'img_footer/construction_7.png'
+        'img_footer/footer_animals.png',
+        'img_footer/footer_chairs.png',
+        'img_footer/footer_laundry.png',
+        'img_footer/footer_snacks.png'
       ]
     }
   ];
