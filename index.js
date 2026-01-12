@@ -297,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function () {
           const randomImg = footer.images[randomIndex];
           footer.el.style.backgroundImage = `url(${randomImg})`;
           footer.el.style.backgroundSize = "contain";
-          footer.el.style.backgroundPosition = "center";
+          footer.el.style.backgroundPosition = "center bottom";
         });
 
         atBottom = true;
