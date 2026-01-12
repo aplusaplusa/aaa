@@ -7,10 +7,12 @@ fetch(pressUrl)
 
     renderSheet(data.Press, "sheetPress");
     renderSheet(data.Recognition, "sheetRecognition");
+    renderSheet(data.Exhibition, "sheetExhibition");
 
     const bgItems = [
       ...(data.Press || []),
-      ...(data.Recognition || [])
+      ...(data.Recognition || []),
+      ...(data.Exhibition || [])
     ].filter(row => row.image && row.image.trim() !== ""); 
 
     if (bgItems.length > 0) {
@@ -18,7 +20,6 @@ fetch(pressUrl)
     }
   })
   .catch(err => console.error(err));
-
 
 
 // ----------------------
