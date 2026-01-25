@@ -52,7 +52,25 @@ html, body {
   cursor: pointer;
   font-size: 28px;
   color: white;
+  mix-blend-mode: difference;
   z-index: 9;
+}
+
+#menu-m-bg {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(5px);
+  -moz-backdrop-filter: blur(5px);
+  -ms-backdrop-filter: blur(5px);
+  -o-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  z-index: 8;
+  pointer-events: none;
 }
 
 
@@ -472,10 +490,11 @@ html, body {
 }
 
 .press-col-1 {
-  padding: 0 20px 0 20px;
+  padding: 0 0 0 20px;
 }
 
 .press-col-2 {
+  padding: 0 0 0 20px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis

@@ -86,7 +86,7 @@ function renderSheet(rows, targetId) {
 
     // col12 (text1 + text2 wrapper)
     const col12 = document.createElement("div");
-    col12.className = "press-col-title";
+    col12.className = "press-col-header";
 
     // text1
     const col1 = document.createElement("div");

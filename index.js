@@ -36,6 +36,7 @@ function showThumbnail() {
 // =============================================================================
 document.addEventListener("DOMContentLoaded", () => {
   const menuM = document.getElementById("menu-m");
+  const menuMbg = document.getElementById("menu-m-bg");
   const menuR = document.getElementById("menu-r");
   const menuButtons = document.querySelectorAll(".menu-btn");
 
@@ -43,10 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
   menuM.addEventListener("click", () => {
     menuR.classList.toggle("open");
     menuM.classList.toggle("active");
+    menuMbg.style.display = "block";
     if (menuM.classList.contains("active")) {
       menuM.textContent = "close";
+      menuMbg.style.display = "block";
     } else {
       menuM.textContent = "menu";
+      menuMbg.style.display = "none";
     }
   });
 
@@ -54,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       menuR.classList.remove("open");
       menuM.classList.remove("active");
+      menuMbg.style.display = "none";
       menuM.textContent = "menu"; 
     });
   });
