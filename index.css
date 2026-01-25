@@ -50,7 +50,6 @@ html, body {
   background: none;
   border: none;
   cursor: pointer;
-  mix-blend-mode: difference;
   font-size: 28px;
   color: white;
   z-index: 9;
