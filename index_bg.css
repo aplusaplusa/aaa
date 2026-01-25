@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 100svh;
+  min-height: 100dvh;
   background-image: linear-gradient(rgba(0,0,0,0.1)), url("img_design_clinic/design_clinic_1.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -20,7 +20,7 @@
 /* bg: col3-bc */
 /* ============================================================================= */
 .bg-project {
-  min-height: 100svh;
+  min-height: 100dvh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -28,7 +28,7 @@
 
 .bg-clinic-sub {
   width: 100%;
-  min-height: 100svh;
+  min-height: 100dvh;
   background-image: linear-gradient(rgba(0,0,0,0)), url("img_projects/50_apartment_of_curiosities/aaa_aptofcuriosities_11.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -36,7 +36,7 @@
 }
 
 .bg-about {
-  min-height: 100svh;
+  min-height: 100dvh;
   background-image: linear-gradient(rgba(0,0,0,0)), url("img_about/profile_1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -44,7 +44,7 @@
 }
 
 .bg-contact {
-  min-height: 100svh;
+  min-height: 100dvh;
   background-image: linear-gradient(rgba(0,0,0,0)), url("img_contact/contact_header.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -52,7 +52,7 @@
 }
 
 .bg-press {
-  min-height: 100svh;
+  min-height: 100dvh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
