@@ -87,7 +87,7 @@
   
   .col3-home {
     grid-template-columns: none;
-    grid-template-rows: 33.3vh 33.3vh 33.3vh;
+    grid-template-rows: 33.3svh 33.3svh 33.3svh;
   }
 
   .col3-home-item {
@@ -234,7 +234,6 @@
   /* ----------------------------------------------------------------------------- */
   .type-item,
   .category-item {
-    height: 20px;
     border-radius: 20px;
     font-size: 16px;
   }

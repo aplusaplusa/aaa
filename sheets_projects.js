@@ -131,7 +131,7 @@ function renderTypes() {
   typeFilter.appendChild(header);
 
   allTypes.forEach((type, index) => {
-    const item = document.createElement("div");
+    const item = document.createElement("button");
     item.className = "type-item";
     item.textContent = type;
     item.dataset.type = type;
@@ -197,7 +197,7 @@ function renderCategories() {
   categoryFilter.appendChild(header);
 
   allCategories.forEach((cat, index) => {
-    const item = document.createElement("div");
+    const item = document.createElement("button");
     item.className = "category-item";
     item.textContent = cat;
     item.dataset.type = cat;
