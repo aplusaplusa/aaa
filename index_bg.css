@@ -1,27 +1,6 @@
-.bg-about {
-  width: calc(100% - 20px);
-  margin-left: 20px;
-  /* width: 100%; */
-  min-height: 100vh;
-  background-image: linear-gradient(rgba(0,0,0,0)), url("img_about/profile_1.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  color: white;
-}
-
-
-.bg-about2 {
-  width: 100%;
-  min-height: 100vh;
-  background-image: linear-gradient(rgba(0,0,0,0)), url("img_contact/construction_2.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  color: white;
-}
-
-
+/* ============================================================================= */
+/* bg: col1 */
+/* ============================================================================= */
 .bg-clinic {
   display: flex;
   flex-direction: column;
@@ -33,52 +12,48 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  color: white;
 }
 
-.bg-clinic2 {
-  width: 100%;
+
+
+/* ============================================================================= */
+/* bg: col3-bc */
+/* ============================================================================= */
+.bg-project {
   min-height: 100vh;
-  background-image: linear-gradient(rgba(0,0,0,0.1)), url("img_projects/50_apartment_of_curiosities/aaa_aptofcuriosities_11.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  color: white;
+}
+
+.bg-clinic-sub {
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0,0,0,0)), url("img_projects/50_apartment_of_curiosities/aaa_aptofcuriosities_11.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.bg-about {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0,0,0,0)), url("img_about/profile_1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.bg-contact {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0,0,0,0)), url("img_contact/contact_header.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .bg-press {
-  width: calc(100% - 20px);
-  margin-left: 20px;
-  /* width: 100%; */
   min-height: 100vh;
-  background: black;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  transition: background-image 1s ease-in-out;
-  color: white;
-}
-
-/* .bg-contact {
-  width: 100%;
-  min-height: 100vh;
-  background: black;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  transition: background-image 1s ease-in-out;
-  color: white;
-} */
-
-.bg-contact {
-  width: calc(100% - 20px);
-  margin-left: 20px;
-  /* width: 100%; */
-  min-height: 100vh;
-  background-image: linear-gradient(rgba(0,0,0,0.1)), url("img_contact/contact_header.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  transition: background-image 1s ease-in-out;
-  color: white;
 }

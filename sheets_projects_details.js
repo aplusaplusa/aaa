@@ -2,7 +2,7 @@ const params = new URLSearchParams(location.search);
 const sheetName = params.get("sheet");
 
 if (!sheetName) {
-  document.getElementById('content').textContent = "No sheet selected";
+  document.getElementById('projectDetail').textContent = "No sheet selected";
   throw new Error("No sheet selected");
 }
 
@@ -13,7 +13,7 @@ fetch(detailUrl)
   .then(res => res.json())
   .then(res => {
     const data = res.data;
-    const container = document.getElementById('content');
+    const container = document.getElementById('projectDetail');
     container.innerHTML = '';
 
     let currentRowDiv = null;
@@ -52,10 +52,7 @@ fetch(detailUrl)
 
         const imgDiv = document.createElement('div');
         imgDiv.style.backgroundImage = `url('${item.image}')`;
-        imgDiv.style.backgroundSize = 'cover';
-        imgDiv.style.backgroundPosition = 'center';
-        imgDiv.style.backgroundRepeat = 'no-repeat';
-        imgDiv.style.minHeight = '100vh';
+        imgDiv.className = 'bg-project';
 
         currentImgContainer.appendChild(imgDiv);
       }
@@ -63,5 +60,5 @@ fetch(detailUrl)
   })
   .catch(err => {
     console.error(err);
-    document.getElementById('content').textContent = 'no data';
+    document.getElementById('projectDetail').textContent = 'no data';
   });

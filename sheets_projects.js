@@ -1,15 +1,15 @@
 // ==============================================================================
-// Loading
+// Projects: Loading
 // ==============================================================================
 const loadingImages = [
-  'img_footer/construction_1.png',
-  'img_footer/construction_3.png',
-  'img_footer/construction_5.png',
-  'img_footer/construction_7.png'
+  'img_projects_loading/loading_1.png',
+  'img_projects_loading/loading_2.png',
+  'img_projects_loading/loading_3.png',
+  'img_projects_loading/loading_4.png'
 ];
 
 let lastLoadingIndex = -1;
-const loadingEl = document.querySelector("#loadingImg");
+const loadingEl = document.querySelector("#thumbnails-loading");
 
 function getRandomLoadingIndex() {
   if (loadingImages.length <= 1) return 0;
@@ -28,7 +28,6 @@ function updateLoadingBackground() {
   lastLoadingIndex = idx;
   const imageUrl = loadingImages[idx];
 
-  // loadingEl.style.transition = "background-image 1s ease-in-out";
   loadingEl.style.backgroundImage = `url('${imageUrl}')`;
 }
 
@@ -52,8 +51,8 @@ let selectedCategories = [];
 
 // --- Sheet Renderding ---
 function renderSheets() {
-  const list = document.getElementById("list");
-  list.innerHTML = "";
+  const thumbnails = document.getElementById("thumbnails");
+  thumbnails.innerHTML = "";
 
   let filtered = allSheets.filter(sh => {
     const sheetCats = [
@@ -80,23 +79,23 @@ function renderSheets() {
 
   filtered.forEach(sh => {
     const wrap = document.createElement("div");
-    wrap.className = "sheet";
+    wrap.className = "thumbnail-item";
 
     if (sh.image) {
       const img = document.createElement("img");
       img.src = sh.image;
-      img.className = "sheet-thumbnail";
+      img.className = "thumbnail-img";
       wrap.appendChild(img);
     }
 
     const title = document.createElement("div");
-    title.className = "sheet-title";
+    title.className = "thumbnail-title";
     title.textContent = sh.name;
     wrap.appendChild(title);
 
     if (sh.text) {
       const t = document.createElement("div");
-      t.className = "sheet-text";
+      t.className = "thumbnail-sub";
       t.textContent = sh.text;
       wrap.appendChild(t);
     }
@@ -106,82 +105,30 @@ function renderSheets() {
       const newUrl = window.location.pathname + "?sheet=" + encodeURIComponent(sh.name);
       window.history.pushState({ sheet: sh.name }, "", newUrl);
 
-      const categoriesBlock = document.getElementById("categoriesBlock");
-      if (categoriesBlock) categoriesBlock.style.display = "none";
-      list.style.display = "none";
-      const content = document.getElementById("content");
-      if (content) content.style.display = "block";
+      const filters = document.getElementById("filters");
+      if (filters) filters.style.display = "none";
+      thumbnails.style.display = "none";
+      const projectDetail = document.getElementById("projectDetail");
+      if (projectDetail) projectDetail.style.display = "block";
     });
 
-    list.appendChild(wrap);
+    thumbnails.appendChild(wrap);
   });
 }
 
-// function renderSheets() {
-//   const list = document.getElementById("list");
-//   list.innerHTML = "";
 
-//   let filtered = allSheets;
 
-//   if (selectedTypes.length > 0) {
-//     filtered = filtered.filter(sh => selectedTypes.includes(sh.category1));
-//   }
-
-//   if (selectedCategories.length > 0) {
-//     filtered = filtered.filter(sh => selectedCategories.includes(sh.category2));
-//   }
-
-//   if (filtered.length === 0) return;
-
-//   filtered.forEach(sh => {
-//     const wrap = document.createElement("div");
-//     wrap.className = "sheet";
-
-//     if (sh.image) {
-//       const img = document.createElement("img");
-//       img.src = sh.image;
-//       img.className = "sheet-thumbnail";
-//       wrap.appendChild(img);
-//     }
-
-//     const title = document.createElement("div");
-//     title.className = "sheet-title";
-//     title.textContent = sh.name;
-//     wrap.appendChild(title);
-
-//     if (sh.text) {
-//       const t = document.createElement("div");
-//       t.className = "sheet-text";
-//       t.textContent = sh.text;
-//       wrap.appendChild(t);
-//     }
-
-//     wrap.addEventListener("click", () => {
-//       loadSheetData(sh.name);
-//       const newUrl = window.location.pathname + "?sheet=" + encodeURIComponent(sh.name);
-//       window.history.pushState({ sheet: sh.name }, "", newUrl);
-
-//       const categoriesBlock = document.getElementById("categoriesBlock");
-//       if (categoriesBlock) categoriesBlock.style.display = "none";
-//       list.style.display = "none";
-//       const content = document.getElementById("content");
-//       if (content) content.style.display = "block";
-//     });
-
-//     list.appendChild(wrap);
-//   });
-// }
 
 const defaultVisibleCount = 10;
 
 function renderTypes() {
-  const typeList = document.getElementById("typeList");
-  typeList.innerHTML = "";
+  const typeFilter = document.getElementById("typeFilter");
+  typeFilter.innerHTML = "";
 
   const header = document.createElement("h3");
-  header.className = "item-header";
+  header.className = "filter-type";
   header.textContent = "Project Type";
-  typeList.appendChild(header);
+  typeFilter.appendChild(header);
 
   allTypes.forEach((type, index) => {
     const item = document.createElement("div");
@@ -193,7 +140,7 @@ function renderTypes() {
       item.classList.add("is-hidden");
     }
 
-    typeList.appendChild(item);
+    typeFilter.appendChild(item);
   });
 
   let toggleBtn = null;
@@ -202,10 +149,10 @@ function renderTypes() {
     toggleBtn.className = "type-toggle";
     toggleBtn.textContent = "See More";
     toggleBtn.dataset.state = "collapsed";
-    typeList.appendChild(toggleBtn);
+    typeFilter.appendChild(toggleBtn);
   }
 
-  typeList.querySelectorAll(".type-item").forEach(el => {
+  typeFilter.querySelectorAll(".type-item").forEach(el => {
     el.addEventListener("click", () => {
       const type = el.dataset.type;
 
@@ -226,7 +173,7 @@ function renderTypes() {
     toggleBtn.addEventListener("click", () => {
       const isCollapsed = toggleBtn.dataset.state === "collapsed";
 
-      typeList.querySelectorAll(".type-item").forEach((item, index) => {
+      typeFilter.querySelectorAll(".type-item").forEach((item, index) => {
         if (index >= defaultVisibleCount) {
           item.classList.toggle("is-hidden", !isCollapsed);
         }
@@ -241,13 +188,13 @@ function renderTypes() {
 
 // --- Category Renderding ---
 function renderCategories() {
-  const categoryList = document.getElementById("categoryList");
-  categoryList.innerHTML = "";
+  const categoryFilter = document.getElementById("categoryFilter");
+  categoryFilter.innerHTML = "";
 
   const header = document.createElement("h3");
-  header.className = "item-header";
+  header.className = "filter-type";
   header.textContent = "Category";
-  categoryList.appendChild(header);
+  categoryFilter.appendChild(header);
 
   allCategories.forEach((cat, index) => {
     const item = document.createElement("div");
@@ -259,7 +206,7 @@ function renderCategories() {
       item.classList.add("is-hidden");
     }
 
-    categoryList.appendChild(item);
+    categoryFilter.appendChild(item);
   });
 
   let toggleBtn = null;
@@ -268,10 +215,10 @@ function renderCategories() {
     toggleBtn.className = "category-toggle";
     toggleBtn.textContent = "See More";
     toggleBtn.dataset.state = "collapsed";
-    categoryList.appendChild(toggleBtn);
+    categoryFilter.appendChild(toggleBtn);
   }
 
-  categoryList.querySelectorAll(".category-item").forEach(el => {
+  categoryFilter.querySelectorAll(".category-item").forEach(el => {
     el.addEventListener("click", () => {
       const type = el.dataset.type;
 
@@ -291,7 +238,7 @@ function renderCategories() {
     toggleBtn.addEventListener("click", () => {
       const isCollapsed = toggleBtn.dataset.state === "collapsed";
 
-      categoryList.querySelectorAll(".category-item").forEach((item, index) => {
+      categoryFilter.querySelectorAll(".category-item").forEach((item, index) => {
         if (index >= defaultVisibleCount) {
           item.classList.toggle("is-hidden", !isCollapsed);
         }
@@ -306,78 +253,12 @@ function renderCategories() {
 
 
 
-// function renderCategories() {
-//   const categoryList = document.getElementById("categoryList");
-//   categoryList.innerHTML = "";
-
-//   const header = document.createElement("h3");
-//   header.className = "item-header";
-//   header.textContent = "Category";
-//   categoryList.appendChild(header);
-
-//   // const allBtn = document.createElement("div");
-//   // allBtn.className = "category-item";
-//   // allBtn.textContent = "All";
-//   // allBtn.dataset.category = "All";
-//   // allBtn.classList.add("item-selected");
-//   // categoryList.appendChild(allBtn);
-
-//   allCategories.forEach(cat => {
-//     const item = document.createElement("div");
-//     item.className = "category-item";
-//     item.textContent = cat;
-//     item.dataset.category = cat;
-//     categoryList.appendChild(item);
-//   });
-
-//   categoryList.querySelectorAll(".category-item").forEach(el => {
-//     el.addEventListener("click", () => {
-//       const cat = el.dataset.category;
-
-//       if (cat === "All") {
-//         selectedCategories = [];
-//         categoryList.querySelectorAll(".category-item").forEach(btn => btn.classList.remove("item-selected"));
-//         el.classList.add("item-selected");
-//       } else {
-//         el.classList.toggle("item-selected");
-//         if (selectedCategories.includes(cat)) {
-//           selectedCategories = selectedCategories.filter(c => c !== cat);
-//         } else {
-//           selectedCategories.push(cat);
-//         }
-//       }
-//       // if (cat === "All") {
-//       //   selectedCategories = [];
-//       //   categoryList.querySelectorAll(".category-item").forEach(btn => btn.classList.remove("item-selected"));
-//       //   el.classList.add("item-selected");
-//       // } else {
-//       //   const allBtn = categoryList.querySelector('[data-category="All"]');
-//       //   if (allBtn) allBtn.classList.remove("item-selected");
-
-//       //   if (selectedCategories.includes(cat)) {
-//       //     selectedCategories = selectedCategories.filter(c => c !== cat);
-//       //     el.classList.remove("item-selected");
-//       //   } else {
-//       //     selectedCategories.push(cat);
-//       //     el.classList.add("item-selected");
-//       //   }
-
-//       //   if (selectedCategories.length === 0 && allBtn) {
-//       //     allBtn.classList.add("item-selected");
-//       //   }
-//       // }
-
-//       renderSheets();
-//     });
-//   });
-// }
-
 
 
 // --- Sheet Data fetch + Renderding ---
 function loadSheetData(sheetName) {
   const detailUrl = `${projectUrl}?sheet=${encodeURIComponent(sheetName)}`;
-  const container = document.getElementById('content');
+  const container = document.getElementById('projectDetail');
   container.innerHTML = 'Loading...';
 
   fetch(detailUrl)
@@ -422,10 +303,7 @@ function loadSheetData(sheetName) {
 
           const imgDiv = document.createElement('div');
           imgDiv.style.backgroundImage = `url('${item.image}')`;
-          imgDiv.style.backgroundSize = 'cover';
-          imgDiv.style.backgroundPosition = 'center';
-          imgDiv.style.backgroundRepeat = 'no-repeat';
-          imgDiv.style.minHeight = '100vh';
+          imgDiv.className = 'bg-project';
 
           currentImgContainer.appendChild(imgDiv);
         }
@@ -463,5 +341,5 @@ fetch(projectUrl)
   })
   .catch(err => {
     console.error(err);
-    // document.getElementById("list").textContent = "Failed to load.";
+    // document.getElementById("thumbnails").textContent = "Failed to load.";
   });

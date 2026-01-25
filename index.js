@@ -21,137 +21,56 @@ $(".menu-btn").click(function (e) {
 // Menu: Projects > Thumbnail Page
 // =============================================================================
 function showThumbnail() {
-  const categoriesBlock = document.getElementById("categoriesBlock");
-  const list = document.getElementById("list");
-  const content = document.getElementById("content");
+  const filters = document.getElementById("filters");
+  const thumbnails = document.getElementById("thumbnails");
+  const projectDetail = document.getElementById("projectDetail");
 
-  if (categoriesBlock) categoriesBlock.style.display = "grid";
-  if (list) list.style.display = "flex";
-  if (content) content.style.display = "none";
+  if (filters) filters.style.display = "grid";
+  if (thumbnails) thumbnails.style.display = "flex";
+  if (projectDetail) projectDetail.style.display = "none";
 }
 
 
 // =============================================================================
-// Menu: Mobile hamburgerBtn
+// Menu: Mobile
 // =============================================================================
 document.addEventListener("DOMContentLoaded", () => {
-  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const menuM = document.getElementById("menu-m");
   const menuR = document.getElementById("menu-r");
   const menuButtons = document.querySelectorAll(".menu-btn");
 
-  // Mobile Hamburger Btn: Open/Close
-  hamburgerBtn.addEventListener("click", () => {
+  // Mobile Btn: Open/Close
+  menuM.addEventListener("click", () => {
     menuR.classList.toggle("open");
-    hamburgerBtn.classList.toggle("active");
-
-    if (hamburgerBtn.classList.contains("active")) {
-      hamburgerBtn.textContent = "close";
+    menuM.classList.toggle("active");
+    if (menuM.classList.contains("active")) {
+      menuM.textContent = "close";
     } else {
-      hamburgerBtn.textContent = "menu";
+      menuM.textContent = "menu";
     }
   });
 
   menuButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       menuR.classList.remove("open");
-      hamburgerBtn.classList.remove("active");
-      hamburgerBtn.textContent = "menu"; 
+      menuM.classList.remove("active");
+      menuM.textContent = "menu"; 
     });
   });
 });
 
 
-
-
-// Menu Text Color: White BG ------------------------------------------------
-// function updateMenuBlendMode() {
-//   const page2 = document.querySelector(".page2");
-//   const menuL = document.querySelector(".menu-l");
-//   const menuR = document.querySelector("#menu-r");
-
-//   if (!menuL || !menuR || !page2) return;
-
-//   const isPage2Visible =
-//     window.getComputedStyle(page2).display === "block";
-
-//   if (isPage2Visible) {
-//     menuL.style.mixBlendMode = "difference";
-//     menuR.style.mixBlendMode = "difference";
-//   } else {
-//     menuL.style.mixBlendMode = "";
-//     menuR.style.mixBlendMode = "";
-//   }
-// }
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   updateMenuBlendMode();
-
-//   const page2 = document.querySelector(".page2");
-//   if (page2) {
-//     const observer = new MutationObserver(updateMenuBlendMode);
-//     observer.observe(page2, { attributes: true, attributeFilter: ["style"] });
-//   }
-// });
-
-
-// function updateMenuBlendMode() {
-//   const page2 = document.querySelector(".page2");
-//   const menuL = document.querySelector(".menu-l");
-//   const menuR = document.querySelector(".menu-r");
-
-//   if (!menuL || !menuR || !page2) return;
-
-//   const isPage2Visible =
-//     window.getComputedStyle(page2).display === "block";
-
-//   if (isPage2Visible) {
-//     menuL.style.mixBlendMode = "difference";
-//     menuR.style.mixBlendMode = "difference";
-//   } else {
-//     menuL.style.mixBlendMode = "";
-//     menuR.style.mixBlendMode = "";
-//   }
-// }
-
-
-
 // Home: splash ------------------------------------------------
-// document.addEventListener('DOMContentLoaded', function () {
-//   const scrollArea = document.querySelector('.scrollContents');
-//   const splash = document.getElementById('col3-home-splash');
-//   const menuL = document.querySelector("#menu-l");
-//   const menuR = document.querySelector("#menu-r");
-//   if (!scrollArea || !splash) return;
-
-//   scrollArea.addEventListener('scroll', function () {
-//     if (scrollArea.scrollTop > 0) {
-//       // splash.classList.add('hidden');
-//       menuL.style.mixBlendMode = "difference";
-//       menuR.style.mixBlendMode = "difference";
-//     } else {
-//       // splash.classList.remove('hidden');
-//       menuL.style.mixBlendMode = "normal";
-//       menuR.style.mixBlendMode = "normal";
-//     }
-//   });
-// });
-
 document.addEventListener('DOMContentLoaded', function () { 
   const scrollArea = document.querySelector('.scrollContents'); 
   const splash = document.getElementById('col3-home-splash'); 
-  const menuL = document.querySelector("#menu-l"); 
-  const menuR = document.querySelector("#menu-r"); 
   if (!scrollArea || !splash) return; 
   
   scrollArea.addEventListener('scroll', function () { 
     if (scrollArea.scrollTop > 0) { 
       splash.classList.add('hidden'); 
-      // menuL.style.mixBlendMode = "difference"; 
-      // menuR.style.mixBlendMode = "difference"; 
-    } else { 
+      } else { 
       splash.classList.remove('hidden'); 
-      // menuL.style.mixBlendMode = "normal"; 
-      // menuR.style.mixBlendMode = "normal"; 
       } 
     }); 
   });
@@ -160,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Home: splash > A fonts ------------------------------------------------
 document.addEventListener('DOMContentLoaded', function () {
-  const h1Elements = document.querySelectorAll('.col3-home-logo h1');
+  const h1Elements = document.querySelectorAll('.splash-logo');
   const menuButtons = document.querySelectorAll('.menu-btn');
 
   const fonts = [
@@ -206,43 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const footerConfigs = [
     {
-      selector: '.footer-home',
-      images: [
-        'img_footer/footer_animals.png',
-        'img_footer/footer_chairs.png',
-        'img_footer/footer_laundry.png',
-        'img_footer/footer_snacks.png'
-      ]
-    },
-    {
-      selector: '.footer-projects',
-      images: [
-        'img_footer/construction_1.png',
-        'img_footer/construction_3.png',
-        'img_footer/construction_5.png',
-        'img_footer/construction_7.png'
-      ]
-    },
-    {
-      selector: '.footer-about',
-      images: [
-        'img_footer/footer_animals.png',
-        'img_footer/footer_chairs.png',
-        'img_footer/footer_laundry.png',
-        'img_footer/footer_snacks.png'
-      ]
-    },
-    {
-      selector: '.footer-press',
-      images: [
-        'img_footer/footer_animals.png',
-        'img_footer/footer_chairs.png',
-        'img_footer/footer_laundry.png',
-        'img_footer/footer_snacks.png'
-      ]
-    },
-    {
-      selector: '.footer-contact',
+      selector: '.footer-bg',
       images: [
         'img_footer/footer_animals.png',
         'img_footer/footer_chairs.png',
@@ -277,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const clientHeight = scrollArea.clientHeight;
 
       const isAtBottom =
-        scrollTop + clientHeight >= scrollHeight - 800;
+        scrollTop + clientHeight >= scrollHeight - 500;
 
       if (isAtBottom && !atBottom) {
         footers.forEach(footer => {
