@@ -1,70 +1,3 @@
-// =============================================================================
-// Menu: btns
-// =============================================================================
-$('[class^=page]').hide(); 
-$('.page1').show();
-$('.menu-btn#page1').addClass('menu-selected');
-
-$(".menu-btn").click(function (e) {
-    e.preventDefault();
-
-    $('[class^=page]').hide();
-    $('.' + this.id).show();
-
-    $(".menu-btn").removeClass("menu-selected");
-
-    $(this).addClass("menu-selected");
-});
-
-
-// =============================================================================
-// Menu: Projects > Thumbnail Page
-// =============================================================================
-function showThumbnail() {
-  const filters = document.getElementById("filters");
-  const thumbnails = document.getElementById("thumbnails");
-  const projectDetail = document.getElementById("projectDetail");
-
-  if (filters) filters.style.display = "grid";
-  if (thumbnails) thumbnails.style.display = "flex";
-  if (projectDetail) projectDetail.style.display = "none";
-}
-
-
-// =============================================================================
-// Menu: Mobile
-// =============================================================================
-document.addEventListener("DOMContentLoaded", () => {
-  const menuM = document.getElementById("menu-m");
-  const menuMbg = document.getElementById("menu-m-bg");
-  const menuR = document.getElementById("menu-r");
-  const menuButtons = document.querySelectorAll(".menu-btn");
-
-  // Mobile Btn: Open/Close
-  menuM.addEventListener("click", () => {
-    menuR.classList.toggle("open");
-    menuM.classList.toggle("active");
-    menuMbg.style.display = "block";
-    if (menuM.classList.contains("active")) {
-      menuM.textContent = "close";
-      menuMbg.style.display = "block";
-    } else {
-      menuM.textContent = "menu";
-      menuMbg.style.display = "none";
-    }
-  });
-
-  menuButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      menuR.classList.remove("open");
-      menuM.classList.remove("active");
-      menuMbg.style.display = "none";
-      menuM.textContent = "menu"; 
-    });
-  });
-});
-
-
 // Home: splash ------------------------------------------------
 document.addEventListener('DOMContentLoaded', function () { 
   const scrollArea = document.querySelector('.scrollContents'); 
@@ -130,12 +63,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const footerConfigs = [
     {
-      selector: '.footer-bg',
+      selector: '.footer-home-bg',
       images: [
         'img_footer/footer_animals.png',
         'img_footer/footer_chairs.png',
         'img_footer/footer_laundry.png',
         'img_footer/footer_snacks.png'
+      ]
+    },
+    {
+      selector: '.footer-bg',
+      images: [
+        '../img_footer/footer_animals.png',
+        '../img_footer/footer_chairs.png',
+        '../img_footer/footer_laundry.png',
+        '../img_footer/footer_snacks.png'
       ]
     }
   ];

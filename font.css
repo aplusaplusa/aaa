@@ -121,9 +121,9 @@ i {
   color: white;
 }
 
-/* .font-menu:hover {
-  text-decoration: underline;
-} */
+.font-menu:hover {
+  color: white;
+}
 
 /* .menu-selected {
   text-decoration: underline;
